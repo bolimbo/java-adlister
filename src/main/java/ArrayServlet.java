@@ -11,12 +11,28 @@ import java.util.ArrayList;
 public class ArrayServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        ArrayList input [] = new ArrayList[10];
 
-        int size = String.valueOf(input).length();
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        out.println("a href=\"" + "?" +size +"size=3" +  input +"fill=fer");
+
+        int size = Integer.parseInt(request.getParameter("size"));
+        String value = request.getParameter("value");
+
+        String[] array = new String[size];
+
+        for(int  i = 0; size < array.length; i ++){
+           array[i] = value;
+        }
+
+        out.println("<table border=1>");
+        out.println("<tr>");
+
+        for(String string : array) {
+            out.println("<td>" + string + "/<td>");
+        }
+
+        out.println("</tr>");
+        out.println("</table>");
 
     }
 }
